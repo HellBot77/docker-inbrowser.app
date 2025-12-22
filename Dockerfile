@@ -6,7 +6,7 @@ RUN git clone https://github.com/InBrowserApp/inbrowser.app.git && \
     ([[ "$TAG" = "latest" ]] || git checkout ${TAG}) && \
     rm -rf .git
 
-FROM node:lts-alpine AS build
+FROM --platform=$BUILDPLATFORM node:lts-alpine AS build
 
 WORKDIR /inbrowser.app
 COPY --from=base /git/inbrowser.app .
